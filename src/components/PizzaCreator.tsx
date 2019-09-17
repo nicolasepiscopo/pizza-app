@@ -106,7 +106,11 @@ class PizzaSizes extends React.Component<Props, State> {
                             <div className={`${baseClassName}__loading`}>Loading sizes...</div>
                         ) : (
                             error ? (
-                                <div className={`${baseClassName}__error`}>Error: {error}</div>
+                                <div className={`${baseClassName}__error`}>
+                                    {error.graphQLErrors.map((error: any, index: number) => (
+                                        <div key={index}>{error.message}</div>
+                                    ))}
+                                </div>
                             ) : (
                                 <div className={`${baseClassName}__form`}>
                                     <h4>Select a size</h4>
